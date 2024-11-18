@@ -1,0 +1,39 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ExcelReader {
+
+
+    public static void main(String[] args) {
+        List<Employee> employeeList = populateEmployee();
+
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet();
+
+            // Create header row
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Employee ID");
+            headerRow.createCell(1).setCellValue("Employee Name");
+            headerRow.createCell(2).setCellValue("Employee Address");
+            headerRow.createCell(3).setCellValue("Employee Salary");
+            headerRow.createCell(4).setCellValue("Employee Mobile");
+            headerRow.createCell(5).setCellValue("Department");
+            headerRow.createCell(6).setCellValue("Date of Joining");
+            headerRow.createCell(7).setCellValue("Policy Id");
+
+            // Write employee data to sheet
+            int rowNum = 1;
+            for (Employee employee : employeeList) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(employee.getEmpId());
+                row.createCell(1).setCellValue(employee.getEmpName());
+                row.createCell(2).setCellValue(employee.getEmpAddress());
+                row.createCell(3).setCellValue(employee.getEmpSalary());
+                row.createCell(4).setCellValue(employee.getEmpMobile());
+                row.createCell(5).setCellValue(employee.getDepartment());
+                row.createCell(6).setCellValue(employee.getDateOfJoining());
+                row.createCell(7).setCellValue(employee.getPolicyId());
+            }
