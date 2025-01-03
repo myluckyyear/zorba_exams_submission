@@ -1,0 +1,98 @@
+<!-- Maintenance Records -->
+<bean id="maintenance1" class="MaintenanceRecord">
+    <constructor-arg value="1" />
+    <constructor-arg value="Engine Check" />
+    <constructor-arg value="2024-01-15" />
+</bean>
+<bean id="maintenance2" class="MaintenanceRecord">
+<constructor-arg value="2" />
+<constructor-arg value="Tire Replacement" />
+<constructor-arg value="2024-05-10" />
+</bean>
+
+        <!-- Vehicle -->
+<bean id="vehicle1" class="Vehicle">
+<property name="vehicleId" value="101" />
+<property name="vehicleName" value="Sedan" />
+<property name="vehicleType" value="Car" />
+<property name="maintenanceRecords">
+    <list>
+        <ref bean="maintenance1" />
+        <ref bean="maintenance2" />
+    </list>
+</property>
+</bean>
+
+<bean id="vehicle2" class="Vehicle">
+<property name="vehicleId" value="102" />
+<property name="vehicleName" value="Truck" />
+<property name="vehicleType" value="Heavy Vehicle" />
+</bean>
+
+        <!-- Address -->
+<bean id="address1" class="Address">
+<constructor-arg value="1" />
+<constructor-arg value="Downtown" />
+<constructor-arg value="123456" />
+</bean>
+
+<bean id="address2" class="Address">
+<constructor-arg value="2" />
+<constructor-arg value="Uptown" />
+<constructor-arg value="654321" />
+</bean>
+
+        <!-- Destinations -->
+<bean id="destination1" class="Destination">
+<constructor-arg value="201" />
+<constructor-arg value="City Center" />
+<constructor-arg ref="address1" />
+</bean>
+
+<bean id="destination2" class="Destination">
+<constructor-arg value="202" />
+<constructor-arg value="Airport" />
+<constructor-arg ref="address2" />
+</bean>
+
+        <!-- Route -->
+<bean id="route1" class="Route">
+<constructor-arg value="301" />
+<constructor-arg>
+    <list>
+        <ref bean="destination1" />
+        <ref bean="destination2" />
+    </list>
+</constructor-arg>
+</bean>
+
+        <!-- Driver -->
+<bean id="driver1" class="Driver" autowire="byName">
+<property name="driverId" value="1" />
+<property name="driverName" value="John Doe" />
+<property name="destination" ref="destination1" />
+</bean>
+
+<bean id="driver2" class="Driver">
+<property name="driverId" value="2" />
+<property name="driverName" value="Jane Doe" />
+<property name="destination" ref="destination2" />
+</bean>
+
+        <!-- Transport Company -->
+<bean id="transportCompany" class="TransportCompany">
+<constructor-arg value="XYZ Transport" />
+<constructor-arg>
+    <list>
+        <ref bean="driver1" />
+        <ref bean="driver2" />
+    </list>
+</constructor-arg>
+<constructor-arg>
+    <list>
+        <ref bean="vehicle1" />
+        <ref bean="vehicle2" />git
+    </list>
+</constructor-arg>
+</bean>
+        </beans>

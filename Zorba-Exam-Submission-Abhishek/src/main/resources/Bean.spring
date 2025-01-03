@@ -1,0 +1,7 @@
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "your.package") // Replace with your actual package
+public class AppConfig {
+}
